@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_app/screens/sign_up_screen.dart';
 
-class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  static const String id ="sign_in_screen";
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  State<SingUpScreen> createState() => _SingUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SingUpScreenState extends State<SingUpScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   late String _email;
-  late String _username;
   late String _password;
 
-  final FocusNode _userFocusNode= FocusNode();
-  final FocusNode _passFocusNode= FocusNode();
+  late final FocusNode _passFocusNode;
 
+  @override
+  void initState() {
+    _passFocusNode = FocusNode();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    _passFocusNode.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +42,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text("Social media app",
-                    style:  Theme.of(context).textTheme.headline3),
+                        style:  Theme.of(context).textTheme.headline3),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height/25),
                   //email
@@ -40,13 +50,13 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)
+                          borderSide: BorderSide(color: Colors.black)
                       ),
                       labelText: "Enter email",
                     ),
                     textInputAction: TextInputAction.next,
                     onFieldSubmitted: (_){
-                      FocusScope.of(context).requestFocus(_userFocusNode);
+                      FocusScope.of(context).requestFocus(_passFocusNode);
                     },
                     onSaved: (value) {
                       _email = value!.trim();
@@ -54,31 +64,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     validator: (value) {
                       if(value!.isEmpty){
                         return "Please enter your email";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height/25),
-                  //username
-                  TextFormField(
-                    keyboardType: TextInputType.name,
-                    focusNode: _userFocusNode,
-                    decoration: const InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)
-                      ),
-                      labelText: "Enter username",
-                    ),
-                    textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (_){
-                      FocusScope.of(context).requestFocus(_passFocusNode);
-                    },
-                    onSaved: (value) {
-                      _username = value!.trim();
-                    },
-                    validator: (value) {
-                      if(value!.isEmpty){
-                        return "Please enter your username";
                       }
                       return null;
                     },
@@ -112,7 +97,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     },
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height/25),
-                  TextButton(onPressed: (){}, child: const Text("sing up"))
+                  TextButton(onPressed: (){
+                    //Todo: submit form
+                  }, child: const Text("Sign In")),
+                  TextButton(onPressed: (){
+                    Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                  }, child: const Text("Sign Up instead"))
                 ],
               ),
             ),
