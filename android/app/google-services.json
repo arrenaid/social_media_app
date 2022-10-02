@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "832113477976",
+    "project_id": "sotial-media-test-app",
+    "storage_bucket": "sotial-media-test-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832113477976:android:c010db66cb0c108238bd2d",
+        "android_client_info": {
+          "package_name": "org.arrenaid.social_media_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832113477976-sekts125bi3iaa5tle2avos8ovqn55di.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY23zkC3BkYeVxyWzUBuWzuWL4i3bIaY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832113477976-sekts125bi3iaa5tle2avos8ovqn55di.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
