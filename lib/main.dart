@@ -8,13 +8,27 @@ import 'package:social_media_app/screens/create_post_screen.dart';
 import 'package:social_media_app/screens/posts_screen.dart';
 import 'package:social_media_app/screens/sign_in_screen.dart';
 import 'package:social_media_app/screens/sign_up_screen.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    //options: DefaultFirebaseOptions.currentPlatform,
+
+  await SentryFlutter.init(
+        (options) {
+          options.dsn = 'https://c951dffed8fc43cdb4f1198e3225a86d@o4503920789159936.ingest.sentry.io/4503920795779072';
+          // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+          // We recommend adjusting this value in production.
+          //options.tracesSampleRate = 1.0;
+    },
+    appRunner: () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp(
+        //options: DefaultFirebaseOptions.currentPlatform,
+      );
+      runApp(const MyApp() );
+    }
   );
-  runApp(const MyApp() );
+
+
 }
 
 class MyApp extends StatelessWidget {

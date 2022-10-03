@@ -63,6 +63,9 @@ class _PostsScreenState extends State<PostsScreen> {
                   onTap: () {
                     Navigator.of(context).pushNamed(ChatScreen.id, arguments: post);
                   },
+                  onDoubleTap: (){
+                    FirebaseFirestore.instance.collection(Post.posts).doc(snapshot.data!.docs[index].id).delete();
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -73,7 +76,8 @@ class _PostsScreenState extends State<PostsScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                image: FileImage(File(post.imageUrl)),//NetworkImage(doc[Post.colImg],),
+                                image: FileImage(File(post.imageUrl))
+                                ,//NetworkImage(doc[Post.colImg],),
                                 fit: BoxFit.cover,
                           )),
                         ),
