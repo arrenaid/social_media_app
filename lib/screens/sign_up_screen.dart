@@ -147,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           if(value!.isEmpty){
                             return "Please enter your password";
                           }
-                          if(value!.length < 5){
+                          if(value.length < 5){
                             return "Please enter longer password";
                           }
                           return null;
